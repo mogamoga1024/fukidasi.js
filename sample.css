@@ -1,5 +1,5 @@
 
-body {
+:root {
   padding: 24px;
   background-color: aquamarine;
 }
@@ -10,24 +10,27 @@ body {
 }
 
 #copy-btn-wrapper {
+  --copy-btn-width: 100px;
+  --display-copy-message-width: 120px;
+  --display-copy-message-height: 40px;
   position: relative;
 }
 
 #copy-btn {
   position: absolute;
-  width: 100px;
+  width: var(--copy-btn-width);
   height: 50px;
   font-size: 1.2rem;
 }
 
 .display-copy-message {
   position: absolute;
-  width: 120px;
-  height: 40px;
+  width: var(--display-copy-message-width);
+  height: var(--display-copy-message-height);
   top: 60px;
-  left: calc(-1 * (120px - 100px) / 2);
+  left: calc(-1 * (var(--display-copy-message-width) - var(--copy-btn-width)) / 2);
   font-size: 1.2rem;
-  line-height: 40px;
+  line-height: var(--display-copy-message-height);
   text-align: center;
   border-radius: 5px;
   color: white;
@@ -49,7 +52,7 @@ body {
 
 .display-copy-message::before {
   position: absolute;
-  left: calc((120px - 40px) / 2);
+  left: calc((var(--display-copy-message-width) - var(--display-copy-message-height)) / 2);
   top: -35px;
   border: 20px solid transparent;
   border-bottom: 20px solid black;
