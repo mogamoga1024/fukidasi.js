@@ -1,0 +1,58 @@
+
+body {
+  padding: 24px;
+  background-color: aquamarine;
+}
+
+#app {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#copy-btn-wrapper {
+  position: relative;
+}
+
+#copy-btn {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  font-size: 1.2rem;
+}
+
+.display-copy-message {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  top: 60px;
+  left: calc(-1 * (120px - 100px) / 2);
+  font-size: 1.2rem;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  animation: fade-out 2s ease-in forwards;
+  user-select: none;
+}
+
+@keyframes fade-out {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.display-copy-message::before {
+  position: absolute;
+  left: calc((120px - 40px) / 2);
+  top: -35px;
+  border: 20px solid transparent;
+  border-bottom: 20px solid black;
+  content: "";
+}
+
