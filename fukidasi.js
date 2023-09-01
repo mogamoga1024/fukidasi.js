@@ -1,16 +1,14 @@
 
-let canCopyButtonClick = true;
+const fukidasi = (function() {
+    let canExecute = true;
 
-function onClickCopyButton() {
-    if (!canCopyButtonClick) {
-        return;
+    return function(text) {
+        if (!canExecute) {
+            return;
+        }
+        canExecute = false;
+        
+        alert(text);
     }
-    canCopyButtonClick = false;
-    const $copyMessage = document.querySelector("#copy-message");
-    $copyMessage.classList.add("display-copy-message");
-    timer = setTimeout(() => {
-        $copyMessage.classList.remove("display-copy-message");
-        canCopyButtonClick = true;
-    }, 2000);
-}
+})();
 
