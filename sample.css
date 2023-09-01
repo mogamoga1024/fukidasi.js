@@ -4,11 +4,6 @@
   background-color: aquamarine;
 }
 
-#app {
-  width: 80%;
-  margin: 0 auto;
-}
-
 #copy-btn-wrapper {
   --copy-btn-width: 100px;
   --display-copy-message-width: 120px;
