@@ -6,17 +6,20 @@
  * @param {string} text 表示する文字列
  */
 const fukidasi = (function() {
-    let canExecute = true;
+    let canExecuteMap = new WeakMap();
     
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
      */
     return function(elTarget, text) {
-        if (!canExecute) {
+        if (!canExecuteMap.has(elTarget)) {
+            canExecuteMap.set(elTarget, true);
+        }
+        if (!canExecuteMap.get(elTarget)) {
             return;
         }
-        canExecute = false;
+        canExecuteMap.set(elTarget, false);
 
         const elFukidasi = document.createElement("div");
         Object.assign(elFukidasi.style, {
