@@ -4,6 +4,8 @@
  * elTargetはposition: relativeであること。
  * @param {HTMLElement} elTarget 吹き出しの対象
  * @param {string} text 表示する文字列
+ * @param {string} strTriangleBase 三角部の底辺の幅（default: 40px）
+ * @param {string} strTriangleHeight 三角部の高さ（default: 20px）
  */
 const fukidasi = (function() {
     let canExecuteMap = new WeakMap();
@@ -11,8 +13,10 @@ const fukidasi = (function() {
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
+     * @param {string} strTriangleBase
+     * @param {string} strTriangleHeight
      */
-    return function(elTarget, text) {
+    return function(elTarget, text, strTriangleBase = "40px", strTriangleHeight = "20px") {
         if (!canExecuteMap.has(elTarget)) {
             canExecuteMap.set(elTarget, true);
         }
@@ -22,9 +26,9 @@ const fukidasi = (function() {
         canExecuteMap.set(elTarget, false);
 
         const elFukidasi = document.createElement("div");
+        const elTriangle = document.createElement("div");
         Object.assign(elFukidasi.style, {
             top: "60px",
-            left: "0",
             padding: "8px",
             textAlign: "center",
             borderRadius: "5px",
@@ -32,21 +36,25 @@ const fukidasi = (function() {
             backgroundColor: "black",
             userSelect: "none",
         });
+        Object.assign(elTriangle.style, {
+            position: "absolute",
+            top: `-${strTriangleHeight}`,
+            borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
+            borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
+            borderBottom: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+        });
         
         elFukidasi.innerText = text;
 
-        // elFukidasiのサイズを計測するために一旦DOMに追加する
         elFukidasi.style.position = "fixed";
         elFukidasi.style.visibility = "hidden";
         elTarget.appendChild(elFukidasi);
 
-        // elFukidasiのサイズを計測し、elTargetの中央に配置されるようにleftなどを設定する
         const strWidth = getComputedStyle(elFukidasi).width;
         elFukidasi.style.width = strWidth;
         elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
+        elTriangle.style.left = `calc((${elFukidasi.clientWidth}px - ${strTriangleBase}) / 2)`;
 
-        // サイズの計測のために追加したelFukidasiをDOMから削除し、
-        // 追加するときに変えたプロパティを戻す
         elTarget.removeChild(elFukidasi);
         elFukidasi.style.position = "absolute";
         elFukidasi.style.visibility = "";
@@ -68,6 +76,7 @@ const fukidasi = (function() {
         });
 
         elTarget.appendChild(elFukidasi);
+        elFukidasi.appendChild(elTriangle);
 
         setTimeout(() => {
             elTarget.removeChild(elFukidasi);
