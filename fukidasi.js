@@ -2,7 +2,7 @@
 /**
  * elTargetの吹き出しを表示する
  * 
- * ・elTargetはposition: relativeであること
+ * ・（大前提）elTargetはposition:relativeであること！
  * 
  * ・吹き出しの三角形の幅と高さはoptionsで
  *   triangleBase: "40px", triangleHeight: "20px"
