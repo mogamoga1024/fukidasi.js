@@ -8,21 +8,6 @@
 const fukidasi = (function() {
     let canExecute = true;
     
-    const elFukidasi = document.createElement("div");
-    Object.assign(elFukidasi.style, {
-        height: "40px",
-        top: "60px",
-        left: "0",
-        padding: "0 16px",
-        // fontSize: "1.2rem",
-        lineHeight: "40px",
-        textAlign: "center",
-        borderRadius: "5px",
-        color: "white",
-        backgroundColor: "black",
-        userSelect: "none",
-    });
-
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
@@ -32,6 +17,20 @@ const fukidasi = (function() {
             return;
         }
         canExecute = false;
+
+        const elFukidasi = document.createElement("div");
+        Object.assign(elFukidasi.style, {
+            height: "40px",
+            top: "60px",
+            left: "0",
+            padding: "0 16px",
+            lineHeight: "40px",
+            textAlign: "center",
+            borderRadius: "5px",
+            color: "white",
+            backgroundColor: "black",
+            userSelect: "none",
+        });
         
         elFukidasi.innerText = text;
 
