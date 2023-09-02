@@ -59,10 +59,10 @@ const fukidasi = (function() {
             elFukidasi.style.top = `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`;
         }
         else if (trianglePosition === "left") {
-
+            elFukidasi.style.left = `calc(${elTarget.clientWidth}px + ${strTriangleHeight} / 2)`;
         }
         else if (trianglePosition === "right") {
-
+            elFukidasi.style.right = `calc(${elTarget.clientWidth}px + ${strTriangleHeight} / 2)`;
         }
         else if (trianglePosition === "bottom") {
             elFukidasi.style.bottom = `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`;
@@ -90,6 +90,14 @@ const fukidasi = (function() {
                 borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderBottom: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
             });
+        }
+        else if (trianglePosition === "left") {
+            elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
+            // todo
+        }
+        else if (trianglePosition === "right") {
+            elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
+            // todo
         }
         else if (trianglePosition === "bottom") {
             elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
@@ -124,7 +132,7 @@ const fukidasi = (function() {
         // });
 
         elTarget.appendChild(elFukidasi);
-        elFukidasi.appendChild(elTriangle);
+        // elFukidasi.appendChild(elTriangle);
 
         // setTimeout(() => {
         //     elTarget.removeChild(elFukidasi);
