@@ -11,9 +11,9 @@ const fukidasi = (function() {
     const elFukidasi = document.createElement("div");
     Object.assign(elFukidasi.style, {
         position: "absolute",
-        display: "inline-block",
         height: "40px",
         top: "60px",
+        padding: "0 16px",
         fontSize: "1.2rem",
         lineHeight: "40px",
         textAlign: "center",
@@ -33,16 +33,14 @@ const fukidasi = (function() {
         }
         canExecute = false;
         
-        // todo
-
         elFukidasi.innerText = text;
 
         elFukidasi.style.visibility = "hidden";
         document.body.appendChild(elFukidasi);
 
         // debugger
-        elFukidasi.style.width = `${elFukidasi.clientWidth}px`;
-        elFukidasi.style.padding = "0 16px";
+        const strWidth = getComputedStyle(elFukidasi).width;
+        elFukidasi.style.width = strWidth;
         elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
 
         document.body.removeChild(elFukidasi);
