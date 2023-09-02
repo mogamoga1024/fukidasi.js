@@ -34,6 +34,7 @@ const fukidasi = (function() {
         // let trianglePosition = "top";
         // let trianglePosition = "bottom";
         let trianglePosition = "left";
+        // let trianglePosition = "right";
         if (options?.hasOwnProperty("triangleBase")) {
             strTriangleBase = options.triangleBase;
         }
@@ -93,17 +94,31 @@ const fukidasi = (function() {
         }
         else if (trianglePosition === "left") {
             elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
-            // todo
+            Object.assign(elTriangle.style, {
+                position: "absolute",
+                top: `calc((${elFukidasi.clientHeight}px - ${strTriangleBase}) / 2)`,
+                left: `calc(-${strTriangleHeight} + 1px)`,
+                borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderRight: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+            });
         }
         else if (trianglePosition === "right") {
             elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
-            // todo
+            Object.assign(elTriangle.style, {
+                position: "absolute",
+                top: `calc((${elFukidasi.clientHeight}px - ${strTriangleBase}) / 2)`,
+                right: `calc(-${strTriangleHeight} + 1px)`,
+                borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderLeft: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+            });
         }
         else if (trianglePosition === "bottom") {
             elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
             Object.assign(elTriangle.style, {
                 position: "absolute",
-                top: `calc(${elFukidasi.clientHeight}px - 1px)`,
+                bottom: `calc(-${strTriangleHeight} + 1px)`,
                 left: `calc((${elFukidasi.clientWidth}px - ${strTriangleBase}) / 2)`,
                 borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
@@ -132,7 +147,7 @@ const fukidasi = (function() {
         // });
 
         elTarget.appendChild(elFukidasi);
-        // elFukidasi.appendChild(elTriangle);
+        elFukidasi.appendChild(elTriangle);
 
         // setTimeout(() => {
         //     elTarget.removeChild(elFukidasi);
