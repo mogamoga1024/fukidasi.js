@@ -124,29 +124,29 @@ const fukidasi = (function() {
         elFukidasi.style.position = "absolute";
         elFukidasi.style.visibility = "";
 
-        // const fadeOutDuration = 2000;
-        // elFukidasi.animate([
-        //     {
-        //         visibility: "visible",
-        //         opacity: 1
-        //     },
-        //     {
-        //         visibility: "hidden",
-        //         opacity: 0
-        //     }
-        // ], {
-        //     duration: fadeOutDuration,
-        //     easing: "ease-in",
-        //     fill: "forwards"
-        // });
+        const fadeOutDuration = 2000;
+        elFukidasi.animate([
+            {
+                visibility: "visible",
+                opacity: 1
+            },
+            {
+                visibility: "hidden",
+                opacity: 0
+            }
+        ], {
+            duration: fadeOutDuration,
+            easing: "ease-in",
+            fill: "forwards"
+        });
 
         elTarget.appendChild(elFukidasi);
         elFukidasi.appendChild(elTriangle);
 
-        // setTimeout(() => {
-        //     elTarget.removeChild(elFukidasi);
-        //     canExecuteMap.set(elTarget, true);
-        // }, fadeOutDuration);
+        setTimeout(() => {
+            elTarget.removeChild(elFukidasi);
+            canExecuteMap.set(elTarget, true);
+        }, fadeOutDuration);
     }
 })();
 
