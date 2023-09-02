@@ -4,8 +4,8 @@
  * 
  * ・（大前提）elTargetはposition:relativeであること！
  * 
- * ・矢印の方向はoptionsにてtrianglePositionプロパティで指定できる。
- *   値は"top"|"left"|"right"|"bottom"、デフォルトは"top"
+ * ・吹き出しの位置はoptionsにてfukidasiPositionプロパティで指定できる。
+ *   値は"top"|"left"|"right"|"bottom"、デフォルトは"bottom"
  * 
  * @param {HTMLElement} elTarget 吹き出しの対象
  * @param {string} text 表示する文字列
@@ -53,34 +53,21 @@ const fukidasi = (function() {
         const strWidth = getComputedStyle(elFukidasi).width;
         elFukidasi.style.width = strWidth;
 
-        let trianglePosition = "top";
-        if (options?.hasOwnProperty("trianglePosition")) {
-            trianglePosition = options.trianglePosition;
+        let fukidasiPosition = "bottom";
+        if (options?.hasOwnProperty("fukidasiPosition")) {
+            fukidasiPosition = options.fukidasiPosition;
         }
         let triangleBase = 40;
-        if (trianglePosition === "top" || trianglePosition === "bottom") {
+        if (fukidasiPosition === "top" || fukidasiPosition === "bottom") {
             triangleBase = Math.min(triangleBase, elFukidasi.clientWidth / 2);
         }
-        else if (trianglePosition === "left" || trianglePosition === "rigth") {
+        else if (fukidasiPosition === "left" || fukidasiPosition === "right") {
             triangleBase = Math.min(triangleBase, elFukidasi.clientHeight / 2);
         }
         const strTriangleBase = `${triangleBase}px`;
         const strTriangleHeight = `${triangleBase / 2}px`;
 
-        if (trianglePosition === "top") {
-            elFukidasi.style.top = `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`;
-            elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
-            Object.assign(elTriangle.style, {
-                position: "absolute",
-                top: `calc(-${strTriangleHeight} + 1px)`,
-                left: `calc((${elFukidasi.clientWidth}px - ${strTriangleBase}) / 2)`,
-                borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
-                borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
-                borderBottom: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
-                zIndex: zIndexMax,
-            });
-        }
-        else if (trianglePosition === "bottom") {
+        if (fukidasiPosition === "top") {
             elFukidasi.style.bottom = `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`;
             elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
             Object.assign(elTriangle.style, {
@@ -93,20 +80,20 @@ const fukidasi = (function() {
                 zIndex: zIndexMax,
             });
         }
-        else if (trianglePosition === "left") {
-            elFukidasi.style.left = `calc(${elTarget.clientWidth}px + ${strTriangleHeight} / 2)`;
-            elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
+        else if (fukidasiPosition === "bottom") {
+            elFukidasi.style.top = `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`;
+            elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
             Object.assign(elTriangle.style, {
                 position: "absolute",
-                top: `calc((${elFukidasi.clientHeight}px - ${strTriangleBase}) / 2)`,
-                left: `calc(-${strTriangleHeight} + 1px)`,
-                borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
-                borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
-                borderRight: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                top: `calc(-${strTriangleHeight} + 1px)`,
+                left: `calc((${elFukidasi.clientWidth}px - ${strTriangleBase}) / 2)`,
+                borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderBottom: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
                 zIndex: zIndexMax,
             });
         }
-        else if (trianglePosition === "right") {
+        else if (fukidasiPosition === "left") {
             elFukidasi.style.right = `calc(${elTarget.clientWidth}px + ${strTriangleHeight} / 2)`;
             elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
             Object.assign(elTriangle.style, {
@@ -116,6 +103,19 @@ const fukidasi = (function() {
                 borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderLeft: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                zIndex: zIndexMax,
+            });
+        }
+        else if (fukidasiPosition === "right") {
+            elFukidasi.style.left = `calc(${elTarget.clientWidth}px + ${strTriangleHeight} / 2)`;
+            elFukidasi.style.top = `calc((100% - ${elFukidasi.clientHeight}px) / 2)`;
+            Object.assign(elTriangle.style, {
+                position: "absolute",
+                top: `calc((${elFukidasi.clientHeight}px - ${strTriangleBase}) / 2)`,
+                left: `calc(-${strTriangleHeight} + 1px)`,
+                borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
+                borderRight: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
                 zIndex: zIndexMax,
             });
         }

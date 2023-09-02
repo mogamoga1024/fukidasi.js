@@ -8,9 +8,10 @@
 </head>
 <body>
   <div class="btn-container">
-    <button class="btn" onclick="fukidasi(this, 'おはようございます')">押してね</button>
+    <button class="btn" onclick="fukidasi(this, '左！！', {fukidasiPosition: 'left'})">押してね</button>
     <button id="hoge" class="btn">押してね</button>
     <button id="fuga" class="btn">押してね</button>
+    <button id="piyo" class="btn">押してね</button>
   </div>
 
   <script src="fukidasi.js"></script>
@@ -20,7 +21,8 @@
             fontSize: "1.2rem",
             fontWeight: "bold",
             color: "black",
-            backgroundColor: "yellow"
+            backgroundColor: "yellow",
+            fukidasiPosition: "top"
         };
         fukidasi(this, "こんにちは", options);
     };
@@ -33,6 +35,17 @@
             backgroundColor: "green"
         };
         fukidasi(this, "こんばんわ", options);
+    };
+    document.querySelector("#piyo").onclick = function() {
+        const options = {
+            padding: "8px",
+            fontSize: "1.3rem",
+            fontWeight: "bold",
+            color: "black",
+            backgroundColor: "pink",
+            fukidasiPosition: "right"
+        };
+        fukidasi(this, "Hello!", options);
     };
   </script>
 </body>
