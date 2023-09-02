@@ -20,11 +20,9 @@ const fukidasi = (function() {
 
         const elFukidasi = document.createElement("div");
         Object.assign(elFukidasi.style, {
-            height: "40px",
             top: "60px",
             left: "0",
-            padding: "0 16px",
-            lineHeight: "40px",
+            padding: "8px",
             textAlign: "center",
             borderRadius: "5px",
             color: "white",
