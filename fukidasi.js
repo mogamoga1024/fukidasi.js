@@ -35,14 +35,18 @@ const fukidasi = (function() {
         
         elFukidasi.innerText = text;
 
+        // elFukidasiのサイズを計測するために一旦DOMに追加する
         elFukidasi.style.position = "fixed";
         elFukidasi.style.visibility = "hidden";
         elTarget.appendChild(elFukidasi);
 
+        // elFukidasiのサイズを計測し、elTargetの中央に配置されるようにleftなどを設定する
         const strWidth = getComputedStyle(elFukidasi).width;
         elFukidasi.style.width = strWidth;
         elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
 
+        // サイズの計測のために追加したelFukidasiをDOMから削除し、
+        // 追加するときに変えたプロパティを戻す
         elTarget.removeChild(elFukidasi);
         elFukidasi.style.position = "absolute";
         elFukidasi.style.visibility = "";
