@@ -4,7 +4,12 @@
   background-color: aquamarine;
 }
 
-#btn {
+.btn-container {
+  display: flex;
+  column-gap: 16px;
+}
+
+.btn {
   position: relative;
   width: 120px;
   height: 50px;
