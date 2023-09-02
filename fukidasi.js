@@ -14,6 +14,7 @@
  */
 const fukidasi = (function() {
     let canExecuteMap = new WeakMap();
+    const zIndexMax = 2147483647;
     
     /**
      * @param {HTMLElement} elTarget
@@ -54,6 +55,7 @@ const fukidasi = (function() {
             color: "white",
             backgroundColor: "black",
             userSelect: "none",
+            zIndex: zIndexMax,
         });
 
         if (trianglePosition === "top") {
@@ -90,6 +92,7 @@ const fukidasi = (function() {
                 borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderBottom: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                zIndex: zIndexMax,
             });
         }
         else if (trianglePosition === "left") {
@@ -101,6 +104,7 @@ const fukidasi = (function() {
                 borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderRight: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                zIndex: zIndexMax,
             });
         }
         else if (trianglePosition === "right") {
@@ -112,6 +116,7 @@ const fukidasi = (function() {
                 borderTop: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderBottom: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderLeft: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                zIndex: zIndexMax,
             });
         }
         else if (trianglePosition === "bottom") {
@@ -123,6 +128,7 @@ const fukidasi = (function() {
                 borderLeft: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderRight: `calc(${strTriangleBase} / 2) solid transparent`,
                 borderTop: `${strTriangleHeight} solid ${elFukidasi.style.backgroundColor}`,
+                zIndex: zIndexMax,
             });
         }
 
