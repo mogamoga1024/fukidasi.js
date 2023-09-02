@@ -1,11 +1,16 @@
 
 /**
- * elTargetの吹き出しを表示する。
- * elTargetはposition: relativeであること。
+ * elTargetの吹き出しを表示する
+ * 
+ * ・elTargetはposition: relativeであること
+ * 
+ * ・吹き出しの三角形の幅と高さはoptionsで
+ *   triangleBase: "40px", triangleHeight: "20px"
+ *   のように指定可能
+ * 
  * @param {HTMLElement} elTarget 吹き出しの対象
  * @param {string} text 表示する文字列
- * @param {string} strTriangleBase 三角部の底辺の幅（default: 40px）
- * @param {string} strTriangleHeight 三角部の高さ（default: 20px）
+ * @param {object} options 吹き出しのCSS設定
  */
 const fukidasi = (function() {
     let canExecuteMap = new WeakMap();
@@ -13,10 +18,9 @@ const fukidasi = (function() {
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
-     * @param {string} strTriangleBase
-     * @param {string} strTriangleHeight
+     * @param {object} options
      */
-    return function(elTarget, text, strTriangleBase = "40px", strTriangleHeight = "20px") {
+    return function(elTarget, text, options) {
         if (!canExecuteMap.has(elTarget)) {
             canExecuteMap.set(elTarget, true);
         }
@@ -24,6 +28,15 @@ const fukidasi = (function() {
             return;
         }
         canExecuteMap.set(elTarget, false);
+
+        let strTriangleBase = "40px";
+        let strTriangleHeight = "20px";
+        if (options?.hasOwnProperty("triangleBase")) {
+            strTriangleBase = options.triangleBase;
+        }
+        if (options?.hasOwnProperty("triangleHeight")) {
+            strTriangleHeight = options.triangleHeight;
+        }
 
         const elFukidasi = document.createElement("div");
         const elTriangle = document.createElement("div");
@@ -36,6 +49,7 @@ const fukidasi = (function() {
             backgroundColor: "black",
             userSelect: "none",
         });
+        Object.assign(elFukidasi.style, options);
         Object.assign(elTriangle.style, {
             position: "absolute",
             top: `-${strTriangleHeight}`,
