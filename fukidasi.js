@@ -41,7 +41,7 @@ const fukidasi = (function() {
         const elFukidasi = document.createElement("div");
         const elTriangle = document.createElement("div");
         Object.assign(elFukidasi.style, {
-            top: "60px",
+            top: `calc(${elTarget.clientHeight}px + ${strTriangleHeight} / 2)`,
             padding: "8px",
             textAlign: "center",
             borderRadius: "5px",
