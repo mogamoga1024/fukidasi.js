@@ -10,11 +10,11 @@ const fukidasi = (function() {
     
     const elFukidasi = document.createElement("div");
     Object.assign(elFukidasi.style, {
-        position: "absolute",
         height: "40px",
         top: "60px",
+        left: "0",
         padding: "0 16px",
-        fontSize: "1.2rem",
+        // fontSize: "1.2rem",
         lineHeight: "40px",
         textAlign: "center",
         borderRadius: "5px",
@@ -35,15 +35,17 @@ const fukidasi = (function() {
         
         elFukidasi.innerText = text;
 
+        elFukidasi.style.position = "fixed";
         elFukidasi.style.visibility = "hidden";
-        document.body.appendChild(elFukidasi);
+        elTarget.appendChild(elFukidasi);
 
         // debugger
         const strWidth = getComputedStyle(elFukidasi).width;
         elFukidasi.style.width = strWidth;
         elFukidasi.style.left = `calc((100% - ${elFukidasi.clientWidth}px) / 2)`;
 
-        document.body.removeChild(elFukidasi);
+        elTarget.removeChild(elFukidasi);
+        elFukidasi.style.position = "absolute";
         elFukidasi.style.visibility = "";
 
         elTarget.appendChild(elFukidasi);
