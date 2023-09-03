@@ -9,7 +9,7 @@
  * 
  * @param {HTMLElement} elTarget 吹き出しの対象
  * @param {string} text 表示する文字列
- * @param {object|string} optionsOrFukidasiPosition 吹き出しのCSS設定 or 吹き出しの位置
+ * @param {{[key: string]: string}|"top"|"left"|"right"|"bottom"} optionsOrFukidasiPosition 吹き出しのCSS設定 or 吹き出しの位置
  */
 const fukidasi = (function() {
     let canExecuteMap = new WeakMap();
@@ -18,7 +18,7 @@ const fukidasi = (function() {
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
-     * @param {object|string} optionsOrFukidasiPosition
+     * @param {{[key: string]: string}|"top"|"left"|"right"|"bottom"} optionsOrFukidasiPosition
      */
     return function(elTarget, text, optionsOrFukidasiPosition) {
         if (!canExecuteMap.has(elTarget)) {
