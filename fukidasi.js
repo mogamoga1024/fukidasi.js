@@ -1,4 +1,3 @@
-
 /**
  * elTargetの吹き出しを表示する
  * 
@@ -159,4 +158,3 @@ const fukidasi = (function() {
         }, fadeOutDuration);
     }
 })();
-
