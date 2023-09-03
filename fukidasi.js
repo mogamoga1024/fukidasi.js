@@ -20,7 +20,7 @@ const fukidasi = (function() {
      * @param {string} text
      * @param {{[key: string]: string}|"top"|"left"|"right"|"bottom"} optionsOrFukidasiPosition
      */
-    return function(elTarget, text, optionsOrFukidasiPosition) {
+    return function(elTarget, text, optionsOrFukidasiPosition = null) {
         if (!canExecuteMap.has(elTarget)) {
             canExecuteMap.set(elTarget, true);
         }
