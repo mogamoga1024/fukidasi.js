@@ -1,12 +1,14 @@
 
 :root {
-  padding: 120px;
   background-color: aquamarine;
 }
 
 .btn-container {
   display: flex;
+  margin: 120px;
+  flex-wrap: wrap;
   column-gap: 16px;
+  row-gap: 32px;
 }
 
 .btn {
