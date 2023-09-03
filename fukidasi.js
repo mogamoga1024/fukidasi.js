@@ -4,12 +4,13 @@
  * 
  * ・（大前提）elTargetはposition:relativeであること！
  * 
- * ・吹き出しの位置はoptionsにてfukidasiPositionプロパティで指定できる。
+ * ・吹き出しの位置はoptionsOrFukidasiPositionにてfukidasiPositionプロパティで指定できる。
  *   値は"top"|"left"|"right"|"bottom"、デフォルトは"bottom"
+ *   もしくは"top"|"left"|"right"|"bottom"で直接指定できる。
  * 
  * @param {HTMLElement} elTarget 吹き出しの対象
  * @param {string} text 表示する文字列
- * @param {object} options 吹き出しのCSS設定
+ * @param {object|string} optionsOrFukidasiPosition 吹き出しのCSS設定 or 吹き出しの位置
  */
 const fukidasi = (function() {
     let canExecuteMap = new WeakMap();
@@ -18,9 +19,9 @@ const fukidasi = (function() {
     /**
      * @param {HTMLElement} elTarget
      * @param {string} text
-     * @param {object} options
+     * @param {object|string} optionsOrFukidasiPosition
      */
-    return function(elTarget, text, options) {
+    return function(elTarget, text, optionsOrFukidasiPosition) {
         if (!canExecuteMap.has(elTarget)) {
             canExecuteMap.set(elTarget, true);
         }
@@ -29,12 +30,22 @@ const fukidasi = (function() {
         }
         canExecuteMap.set(elTarget, false);
 
+        let fukidasiPosition = "bottom";
+        let options = null;
+        if (typeof optionsOrFukidasiPosition === "string") {
+            fukidasiPosition = optionsOrFukidasiPosition;
+        }
+        else {
+            options = optionsOrFukidasiPosition;
+        }
+
         const elFukidasi = document.createElement("div");
         const elTriangle = document.createElement("div");
         Object.assign(elFukidasi.style, {
             padding: "8px",
             textAlign: "center",
             borderRadius: "5px",
+            fontSize: "1rem",
             color: "white",
             backgroundColor: "black",
             userSelect: "none",
@@ -53,7 +64,6 @@ const fukidasi = (function() {
         const strWidth = getComputedStyle(elFukidasi).width;
         elFukidasi.style.width = strWidth;
 
-        let fukidasiPosition = "bottom";
         if (options?.hasOwnProperty("fukidasiPosition")) {
             fukidasiPosition = options.fukidasiPosition;
         }
